@@ -1,0 +1,27 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# --- 生成物（跑 examples 即可重新生成，不入库）---
+runs/
+runs_*/
+models/
+*.step
+*.stp
+*.stl
+*.3mf
+*.msh
+*.gcode
+*.png
+
+# --- 编辑器 / 系统 ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
