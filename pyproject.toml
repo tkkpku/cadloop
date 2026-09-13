@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cadloop"
+version = "0.3.0"
+description = "The missing FEA link in the text-to-cad ecosystem — structural simulation for 3D-printed parts (Gmsh + FEniCSx)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+keywords = ["fea", "fem", "fenicsx", "gmsh", "3d-printing", "fdm", "cad", "build123d", "anisotropy", "text-to-cad"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering",
+]
+
+# 注意：build123d / gmsh / fenics-dolfinx 体积大且常由 conda 提供，
+# 故不写进 install_requires 硬约束，只列最小集；完整环境见 README。
+dependencies = [
+  "numpy",
+  "scipy",
+  "PyYAML",
+]
+
+[project.optional-dependencies]
+cad = ["build123d>=0.11"]
+mesh = ["gmsh>=4.15"]
+fem = ["fenics-dolfinx>=0.8", "mpi4py"]
+# 与 text-to-cad 的 dfam-check 技能对接（读它产出的 JSON）
+dfam = ["trimesh", "rtree", "networkx", "lxml"]
+dev = ["pytest", "matplotlib"]
+
+[project.urls]
+Homepage = "https://github.com/tkkpku/cadloop"
+Issues = "https://github.com/tkkpku/cadloop/issues"
+
+[tool.setuptools]
+packages = ["cadloop", "cadloop.examples"]
+
+[tool.setuptools.package-data]
+cadloop = ["../config/*.yaml"]
